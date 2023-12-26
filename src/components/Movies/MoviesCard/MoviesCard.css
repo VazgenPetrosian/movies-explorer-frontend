@@ -1,0 +1,114 @@
+.movies__item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #222222;
+  border-radius: 6px;
+}
+
+.movies__info {
+  display: flex;
+  justify-content: space-between;
+  margin: 14px 10px 14px 14px;
+}
+
+.movies__photo {
+  width: 100%;
+  height: 168px;
+  object-fit: cover;
+}
+
+
+
+.movies__title {
+  margin: 0;
+  max-width: 226px;
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: normal;
+  color: #fff;
+}
+
+.movies__button_like {
+  /* margin-top: -7px; */
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  background-image: url(../../../images/like-active.svg);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-color: #222222;
+  cursor: pointer;
+  transition: opacity 1s;
+}
+.movies__button_like:hover {
+  opacity: 0.5;
+}
+
+.movies__button_dislike {
+  /* margin-top: -7px; */
+  background-image: url(../../../images//like-disable.svg);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-color: #222222;
+  border: none;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  transition: opacity 1s;
+}
+
+.movies__button_dislike:hover {
+  opacity: 0.5;
+}
+
+.movies__duration {
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  color: #8B8B8B;
+  margin: 0;
+  margin-bottom: 14px;
+  margin-left: 14px;
+}
+
+@media (min-width: 768px) {
+  .movies__photo {
+    height: 190px;
+  }
+  .movies__info {
+    margin: 14px 14px 15px;
+  }
+
+  .movies__button_dislike {
+    padding: 0;
+    height: 18px;
+    width: 18px;
+
+  }
+  .movies__duration {
+    line-height: normal;
+    margin-bottom: 14px;
+    margin-left: 14px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .movies__photo {
+    height: 203px;
+  }
+  .movies__info {
+    margin: 16px 16px 17px 16px;
+  }
+  .movies__title {
+    font-size: 13px;
+  }
+  .movies__duration {
+    font-size: 11px;
+    margin-bottom: 16px;
+    margin-left: 16px;
+  }
+}

@@ -1,0 +1,118 @@
+.form_type_search {
+  padding: 80px 0 56px;
+  padding: 80px 4px 50px 4px;
+  position: relative;
+  font-family: "Inter", "Arial", sans-serif;
+  border-bottom: 1px solid #424242;
+}
+
+
+
+.form__button-save_type_search {
+  background-image: url('../../../images/find.svg');
+  background-repeat:no-repeat;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  right: 7px;
+  top: 88px;
+}
+
+.form__input_type_search {
+  padding: 14px 0px 14px 22px;
+  background: #2F2F2F;
+  border-radius: 50px;
+  color: #8B8B8B;
+}
+
+.form__input_type_shorts {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #343434;
+  transition: background-color 0.6s;
+  cursor: pointer;
+}
+
+.form__label_type_shorts {
+  display: grid;
+  color: #FFF;
+  grid-template-columns: 36px 99px;
+  font-size: 11px;
+  line-height: 18px;
+  align-items: center;
+  justify-content: center;
+  gap: 0 13px;
+  margin: 42px 0 0;
+}
+
+.form__input_type_shorts::before {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 16px;
+  background-color: #FFF;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 1s;
+}
+
+.form__input_type_shorts:checked {
+  background-color: #3DDC84;
+}
+
+.form__input_type_shorts:checked::before {
+  transform: translateX(16px);
+}
+
+.form__input_type_shorts:active,
+.form__input_type_shorts:active::before {
+  outline: none;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  .form_type_search {
+    padding-bottom: 51px;
+  }
+  .form__input_type_search {
+    font-size: 13px;
+    line-height: 17px;
+  }
+
+  .form__button-save_type_search {
+    right: 8px;
+    top: 85px;
+  }
+
+ 
+
+  .form__label_type_shorts {
+    font-size: 14px;
+    line-height: 18px;
+    margin: 0;
+    padding-top: 42px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .form_type_search {
+    padding: 60px 0px 151px;
+  }
+
+  .form__input_type_search {
+    height: 46px;
+  }
+
+  .form__button-save_type_search {
+    top: 66px;
+    right: 3px;
+  }
+
+  .form__label_type_shorts {
+    right: 0px;
+    top: 42px;
+  }
+}

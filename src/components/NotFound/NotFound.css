@@ -1,0 +1,31 @@
+.notfound {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  color: #FFF;
+  font-family: 'Inter', 'Arial', sans-serif;
+  justify-content: center;
+  align-items: center;
+}
+
+.notfound__title {
+  font-size: 140px;
+  font-weight: 400;
+  line-height: normal;
+  
+}
+
+.notfound__subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.notfound__link {
+  color: #4285F4;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
