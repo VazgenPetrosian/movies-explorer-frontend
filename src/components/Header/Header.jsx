@@ -16,11 +16,11 @@ const Header = ({ loggedIn }) => {
     if (menuIsActive) {
       className = `${className} header_active`;
     }
-    if (loggedIn) {
-      className = `${className} header_login`;
-    }
     if (pathname === '/') {
       className = `${className} header_hide`;
+    }
+    if (loggedIn) {
+      className = `${className} header_login`;
     }
     if (pathAuth) {
       className = `${className} header_auth`;
@@ -53,15 +53,15 @@ const Header = ({ loggedIn }) => {
 return (
   <header className={classNameHeader()}>
     <Link className='header__link header__link_logo' to='/'>
-      <img className='header__logo' src={logo} alt='Movies'/>
+      <img className='header__logo' src={logo} alt='ЛогоСайта'/>
     </Link>
       {!pathAuth &&
         (!loggedIn ? (
         <Navigation>
-          <Link className='header__link' to='/signup'>
+          <Link className='header__link' type='button' to='/signup'>
             Регистрация
           </Link>
-          <Link className='header__button' to='/signin'>
+          <Link className='header__button' type='button'to='/signin'>
             Войти
           </Link>
         </Navigation>

@@ -4,8 +4,9 @@ import Navigation from '../../../Navigation/Navigation';
 
 const Portfolio = () => {
   return (
-    <section className='portfolio__container'>
-      <h1 className='portfolio__title'>Портфолио</h1>
+    <section className='portfolio'>
+    <div className='portfolio__container'>
+      <h2 className='portfolio__title'>Портфолио</h2>
       <Navigation className='portfolio__nav'>
       <ul className='portfolio__list'>
         <li className='portfolio__item'>
@@ -34,6 +35,7 @@ const Portfolio = () => {
         </li>
       </ul>
       </Navigation>
+    </div>
     </section>
   );
 };

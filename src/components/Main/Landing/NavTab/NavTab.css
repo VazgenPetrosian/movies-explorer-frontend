@@ -21,8 +21,22 @@
   line-height: 16px; 
 }
 
-@media (min-width: 320px) {
+/* @media (max-width: 880px) {
   .navigation__link {
     font-size: 11px;
   }
+} */
+
+@media (max-width: 320px) {
+  .navigation__list {
+    font-size: 11px;
+    gap: 24px;
+    padding: 25px 0;
+    text-underline-offset: 2px;
+  }
+
+  .navigation__link {
+    font-size: 11px;
+  }
+
 }

@@ -43,7 +43,8 @@
 
 .form__input_type_profile {
   padding: 0;
-  line-height: 13px;
+  line-height: normal;
+  font-size: 11px;
   text-align: right;
   background-color: #202020;
   color: #FFF;

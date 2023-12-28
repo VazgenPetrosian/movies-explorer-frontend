@@ -2,8 +2,9 @@ import '../AboutProject/AboutProject.css';
 
 const AboutProject = () => {
 return (
-  <section className='about__container'>
-    <h1 className='about__title'>О проекте</h1>
+  <section className='about'>
+  <div className='about__container' id='aboutproject'>
+    <h2 className='about__title'>О проекте</h2>
     <ul className='about__list'>
       <li className='about__item'>
         <h3 className='about__subtitle'>
@@ -32,6 +33,7 @@ return (
       <p className='about__project-stack'>Front-end</p>
     </div>
     </div>
+  </div>
   </section>
 );
 };

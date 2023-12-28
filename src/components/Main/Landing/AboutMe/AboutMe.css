@@ -51,6 +51,7 @@
 }
 
 .aboutme__description {
+  font-family: "Inter", "Arial", sans-serif;
   margin: 0;
   margin-bottom: 40px;
   font-size: 11px;
@@ -79,21 +80,25 @@
   .aboutme__container {
   padding-left: 50px;
   padding-right: 50px;
+  padding-top: 0;
   }
   .aboutme__title {
     font-size: 22px;
     letter-spacing: -0.88px;
-    line-height: 27px;
-    padding-bottom: 23px;
+    line-height: 1.29;
+    padding-bottom: 24px;
     padding-top: 90px;
   }
   .aboutme__description {
     font-size: 12px;
     line-height: 18px;
+    margin: 0;
   }
   .aboutme__subtitle {
     font-size: 12px;
     line-height: 18px; 
+    margin-top: 16px;
+    margin-bottom: 20px;
   }
   .aboutme__photo {
     width: 255px;
@@ -104,7 +109,7 @@
   .aboutme__me {
     gap: 49px;
     flex-direction: row;
-    margin-top: 67px
+    margin-top: 66px
   }
 
   .aboutme__name{
@@ -115,13 +120,14 @@
   }
 
   .aboutme__githublink {
-    margin-top: auto;
+    margin-top: 87px;
     margin-bottom: 0;
   }
 
   .aboutme__info {
     order: 0;
     display: flex;
+    max-width: 364px;
     flex-direction: column;
   }
 }
@@ -131,13 +137,15 @@
   padding-left: 70px;
   padding-right: 70px;
   }
-
+  .aboutme__info {
+  max-width: 600px;
+  }
   .aboutme__title {
     font-size: 22px;
     letter-spacing: -0.88px;
-    line-height: 27px;
+    line-height: 1.25;
     padding-bottom: 23px;
-    padding-top: 100px;
+    padding-top: 110px;
   }
 
   .aboutme__subtitle {
@@ -172,5 +180,7 @@
     letter-spacing: -2px;
 
   }
-
+  .aboutme__githublink {
+    margin-top: 99px;
+  }
 }

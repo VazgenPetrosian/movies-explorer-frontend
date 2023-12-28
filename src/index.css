@@ -1,6 +1,11 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/interfonts.css);
 
-body {
+.body {
   background-color: #202020;
+}
+
+.main-page {
+  display: flex;
+  flex-direction: column;
 }

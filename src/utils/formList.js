@@ -77,7 +77,7 @@ const formForLogin = {
       type: 'password',
       name: 'password',
       label: 'Пароль',
-      placeholder: '',
+      placeholder: 'Пароль',
       minLength: '4',
       maxLength: '40',
       required: true,

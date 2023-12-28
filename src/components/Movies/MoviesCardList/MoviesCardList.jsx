@@ -17,7 +17,7 @@ const MoviesCardList = ({
     </ul>
     <div className='movies__wrapper'>
       {!saved && (
-        <button className='movies__button-more' onClick={onClickAddMore}>
+        <button className='movies__button-more' type='button' onClick={onClickAddMore}>
           Ещё
         </button>
       )}

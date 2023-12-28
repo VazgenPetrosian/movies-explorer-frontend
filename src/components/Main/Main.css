@@ -1,5 +1,5 @@
 .main_movies {
-  padding: 0 70px;
+  padding: 0 10px;
 }
 
 @media (min-width: 768px) {
@@ -8,8 +8,8 @@
   }
 }
 
-@media (min-width: 320px) {
+@media (min-width: 1280px) {
   .main_movies {
-    padding: 0 10px;
+    padding: 0 70px;
   }
 }

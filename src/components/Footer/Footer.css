@@ -4,6 +4,7 @@
   line-height: normal;
   padding: 79px 70px 20px 70px;
   text-align: center;
+  font-family: 'Inter', 'Arial', sans-serif;
 }
 
 .footer__copuright {
@@ -39,6 +40,7 @@ margin: 0;
   flex-direction: row-reverse;
   justify-content: space-between;
   padding-top: 20px;
+
 }
 
 .footer__list {
@@ -55,13 +57,13 @@ gap: 20px;
 
 @media (max-width: 768px) {
 .footer {
-  padding: 79px 30px 20px 30px;
+  padding: 82px 30px 20px 30px;
 }
 }
 
 @media (max-width: 320px) {
 .footer {
-  padding: 79px 10px 20px 10px;
+  padding: 161px 10px 20px 10px;
   font-size: 12px;
 }
 .footer__container {
@@ -74,6 +76,6 @@ gap: 20px;
 .footer__list {
   gap: 12px;
   flex-direction: column;
-  padding: 0 105px;
+  width: 100%;
 }
 }

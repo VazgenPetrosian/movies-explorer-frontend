@@ -1,6 +1,7 @@
 .form {
   box-sizing: border-box;
   width: 100%;
+  font-family: 'Inter', 'Arial', sans-serif;
 }
 
 .form_type_register,
@@ -27,7 +28,7 @@
 .form__list_type_login {
   display: flex;
   flex-direction: column;
-  margin-bottom: 157px;
+  margin-bottom: 247px;
 }
 .form__list_type_register {
   display: flex;
@@ -37,7 +38,15 @@
 .form__item {
   position: relative;
 }
-
+.form__item_type_register {
+  font-size: 10px;
+}
+.form__item_type_login {
+  font-size: 10px;
+}
+.form__item_type_profile {
+  font-size: 11px;
+}
 .form__button-save {
   cursor: pointer;
   transition: 0.5s opacity ease-out;
@@ -56,8 +65,8 @@
   border: none;
   width: 100%;
   appearance: none;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 11px;
+  line-height: 17px;
 }
 
 .form__button-save:disabled {
@@ -81,7 +90,7 @@
   transition: 0.5s;
   min-height: 20px;
   padding: 0;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
   color: #EE3465;
   align-items: flex-end;
 }
@@ -147,6 +156,7 @@
   .form__button-save_type_profile {
     font-size: 13px;
     line-height: 16px;
+    padding-top: 210px;
   }
 }
 

@@ -2,8 +2,8 @@
   padding-left: 18px;
   padding-right: 18px;
   background-color: #202020;
-  padding-top: 70px;
   padding-bottom: 69px;
+  padding-top: 70px;
 }
 
 .about__title {
@@ -12,7 +12,7 @@
   font-size: 18px;
   font-weight: 400;
   letter-spacing: -0.72px;
-  line-height: 22px;
+  line-height: 1.23;
   position: relative;
   padding-bottom: 29px;
   margin: 0;
@@ -64,17 +64,23 @@
   color: #202020;
 }
 .about__project-duration {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: normal;
   font-family: "Inter", "Arial", sans-serif;
   background-color: #303030;
   padding: 11px 10px;
   text-align: center;
   line-height: 13px;
+  color: #FFFFFF;
+  margin: 0;
 }
 .about__project-stack {
   font-family: "Inter", "Arial", sans-serif;
   color: #A0A0A0;
   padding-top: 10px;
   margin: 0;
+  font-size: 11px;
   text-align: center;
   line-height: 12px;
 }
@@ -83,20 +89,19 @@
   .about__title {
     font-size: 22px;
     letter-spacing: -0.88px;
-    line-height: 27px;
-    padding-bottom: 23px;
+    line-height: 1.29;
+    padding-bottom: 24px;
     padding-top: 90px;
   }
   .about__container {
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 90px;
-    padding-top: 0;
   }
   .about__subtitle {
     font-size: 20px;
+    line-height: normal;
     letter-spacing: -0.8px;
-    line-height: 24px;
     padding-bottom: 22px;
   }
 
@@ -112,7 +117,9 @@
 
     padding: 70px 0 93px;
   }
-
+  .about__project {
+    grid-template-columns: 140px 1fr;
+  }
   .about__project-deadlines {
     grid-template-columns: 140px 1fr;
     font-size: 14px;
@@ -136,28 +143,35 @@
   .about__title {
     font-size: 22px;
     letter-spacing: -0.88px;
-    line-height: 27px;
-    padding-bottom: 23px;
+    line-height: 1.24;
+    padding-bottom: 25px;
     padding-top: 110px;
   }
   .about__container {
     padding-left: 70px;
     padding-right: 70px;
     padding-bottom: 110px;
+    padding-top: 0;
   }
 
   .about__list {
     gap: 40px;
     padding-bottom: 110px;
   }
-
+  .about__project-duration {
+    font-size: 14px;
+    line-height: normal;
+  }
   .about__subtitle {
+    font-size: 20px;
+    letter-spacing: -0.8px;
+    line-height: normal;
     padding-bottom: 26px;
   }
 
   .about__description {
     font-size: 14px;
-    font-size: 14px;
+    line-height: 20px;
   }
 
   .about__project {

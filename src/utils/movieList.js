@@ -1,4 +1,4 @@
-import movieOne from '../images/film1.jpg';
+import movieOne from '../images/tryPHOTO.jpg';
 
 const movieList = [
   {

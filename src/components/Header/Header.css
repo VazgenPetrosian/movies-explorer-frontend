@@ -16,7 +16,9 @@
   background-color: #073042;
   padding: 18px 14px;
 }
-
+.header_login {
+  padding: 18px 14px;
+}
 .header_auth {
   padding: 56px 0 50px;
   justify-content: center;
@@ -73,14 +75,15 @@
   text-decoration: none;
   color: #FFF;
   transition: opacity 0.5s ease-out;
-  font-size: 10px;
+  /* font-size: 10px; */
+  font-size: 18px;
   font-weight: 500;
   line-height: 22px;
 }
 
 .header__link.active {
   text-decoration: underline 2px;
-  text-underline-offset: 4px;
+  text-underline-offset: 12px;
 }
 .header__button {
   display: flex;
@@ -151,19 +154,23 @@
   position: relative;
   padding: 8px 20px;
   border-radius: 20px;
-  font-size: 14px;
+  /* font-size: 14px; */
+  font-size: 13px;
   line-height: 16px;
   box-sizing: border-box;
   text-align: center;
-  margin-bottom: 90px;
+  /* margin-bottom: 90px; */
+  margin-bottom: 11px;
+  margin-right: 26px;
 }
 
 .header__link_backLogoMovies {
   position: relative;
-  padding: 8px 20px;
+  box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+  padding: 8px 37px;
   border-radius: 20px;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 13px;
+  line-height: 12px;
   box-sizing: border-box;
   text-align: center;
 }
@@ -175,8 +182,8 @@
   width: 26px;
   height: 26px;
   position: absolute;
-  top: 3px;
-  right: -12px;
+  top: 1px;
+  right: 3px;
   border: none;
   border-radius: 50px;
 }
@@ -185,9 +192,12 @@
   .header_hide {
     padding: 18px 30px;
     font-size: 12px;
+  }
+  .header_login {
+    padding: 18px 30px;
   }  
   .header_auth {
-    max-width: 400px;
+    max-width: 396px;
     padding: 232px 0 40px;
     margin: 0 auto;
     justify-content: flex-start;
@@ -200,6 +210,7 @@
   }
   .header__link {
     font-size: 12px;
+    line-height: 16px;
   }
   .header__link_logo {
   }
@@ -209,13 +220,18 @@
   }
 
   .header__button-menu {
+    padding: 0;
     width: 44px;
+    height: 38px;
   }
 
   .header_active>.header__wrapper {
     width: 520px;
   }
 
+  .header__link.active {
+    text-underline-offset: 8px;
+  }
   .header__list {
     margin: 159px 90px 20px;
     gap: 28px;
@@ -272,11 +288,13 @@
   .header__wrapper {
     display: flex;
     position: static;
-    margin-left: 44px;
+    margin-left: 45px;
     justify-content: space-between;
     width: 100%;
   }
-
+  .header__link.active {
+    text-decoration: none;
+  }
   .header__link_profile {
     margin: 0;
   }
@@ -284,7 +302,7 @@
 
 @media (min-width: 1280px) {
   .header_login {
-    padding: 18px 70px 78px;
+    padding: 18px 70px 18px;
   }
   .header_auth {
     padding: 70px 0 40px;
@@ -292,7 +310,21 @@
   .header_hide {
     padding: 18px 70px;
   }
-  .header__link {
-    line-height: 16px
+  .header__link_backLogoAll {
+    padding: 8px 37px;
+    font-size: 13px;
+    line-height: 12px;;
+  }
+  .header__link_backLogoAll::after {
+    top: 1px;
+    right: 3px;
+  }
+  .header__link_backLogoMovies {
+    font-size: 13px;
+    line-height: 12px;
+  }
+
+  .header__link_backLogoMovies::after {
+
   }
 }

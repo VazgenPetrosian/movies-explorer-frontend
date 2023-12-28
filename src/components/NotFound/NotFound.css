@@ -7,19 +7,23 @@
   font-family: 'Inter', 'Arial', sans-serif;
   justify-content: center;
   align-items: center;
+  margin: 0;
 }
 
 .notfound__title {
   font-size: 140px;
   font-weight: 400;
   line-height: normal;
-  
+  margin: 0;
+
 }
 
 .notfound__subtitle {
   font-size: 16px;
   font-weight: 400;
   line-height: normal;
+  margin: 0;
+
 }
 
 .notfound__link {
@@ -28,4 +32,23 @@
   font-weight: 400;
   line-height: normal;
   text-decoration: none;
+  margin: 0;
+
+}
+
+@media (min-width: 768px) {
+  .notfound {
+    margin-top: 407px;
+    margin-bottom: 222px;
+  }
+  .notfound__title {
+    padding-bottom: 4px;
+  }
+  .notfound__subtitle {
+    padding-bottom: 183px;
+  }
+
+  .notfound__link {
+
+  }
 }
