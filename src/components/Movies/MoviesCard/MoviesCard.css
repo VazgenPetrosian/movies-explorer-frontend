@@ -31,7 +31,20 @@
   line-height: 1.3;
   color: #fff;
 }
-
+.movies__button_delete {
+  padding: 0;
+  background-image: url(../../../images/delete.svg);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-color: #222222;
+  border: none;
+  cursor: pointer;
+  padding-right: 33px;
+  height: 18px;
+  width: 18px;
+  transition: opacity 1s;
+  margin-right: -1px;
+}
 .movies__button_like {
   /* margin-top: -7px; */
   width: 18px;
@@ -90,6 +103,9 @@
     font-size: 13px;
     max-width: 260px;
     line-height: 1;
+  }
+  .movies__button_delete {
+    margin-right: -8px;
   }
   .movies__button_dislike {
     padding: 0;

@@ -38,7 +38,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  background-color: #000000;
+  background-color: #202020;
   opacity: 0.3;
   width: 100dvw;
   height: 100dvh;
@@ -75,10 +75,12 @@
   text-decoration: none;
   color: #FFF;
   transition: opacity 0.5s ease-out;
-  /* font-size: 10px; */
-  font-size: 18px;
+  font-size: 10px;
   font-weight: 500;
   line-height: 22px;
+}
+.header__item>.header__link {
+  font-size: 18px;
 }
 
 .header__link.active {
@@ -163,10 +165,9 @@
   margin-bottom: 11px;
   margin-right: 26px;
 }
-
 .header__link_backLogoMovies {
   position: relative;
-  box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+  /* box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08); */
   padding: 8px 37px;
   border-radius: 20px;
   font-size: 13px;
@@ -187,6 +188,7 @@
   border: none;
   border-radius: 50px;
 }
+
 
 @media (min-width: 768px) {
   .header_hide {
@@ -253,7 +255,9 @@
     top: 22px;
     right: 22px;
   }
-
+  .header__link_isMenu {
+    margin-bottom: 90px;
+  }
 
 }
 

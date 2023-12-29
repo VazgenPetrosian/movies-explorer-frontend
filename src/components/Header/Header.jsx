@@ -58,10 +58,10 @@ return (
       {!pathAuth &&
         (!loggedIn ? (
         <Navigation>
-          <Link className='header__link' type='button' to='/signup'>
+          <Link className='header__link'  to='/signup'>
             Регистрация
           </Link>
-          <Link className='header__button' type='button'to='/signin'>
+          <Link className='header__button' to='/signin'>
             Войти
           </Link>
         </Navigation>

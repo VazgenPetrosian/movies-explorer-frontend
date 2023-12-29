@@ -1,4 +1,5 @@
 import './MoviesCard.css';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
 const MoviesCard = ({
@@ -6,7 +7,20 @@ const MoviesCard = ({
   movie,
 }) => {
   const [ isLiked, setIsLiked ] = useState(false);
-  const likeButtonClassName = `${!isLiked ? 'movies__button_dislike' : 'movies__button_like'}`;
+  const { pathname } = useLocation();
+
+  const likeButtonClassName = () => {
+    let className = '';
+    if (pathname === '/movies') {
+      className = `${!isLiked ? 'movies__button_dislike' : 'movies__button_like'}`;
+    }
+    if (pathname === '/savedmovies') {
+      className = `${saved ? 'movies__button_delete' : 'movies__button_dislike'}`;
+    }
+    return className;
+  };
+
+  // const likeButtonClassName = `${!isLiked ? 'movies__button_dislike' : 'movies__button_like'}`;
 
   function handleLike() {
     setIsLiked(!isLiked);
@@ -23,7 +37,7 @@ const MoviesCard = ({
       <div className='movies__info'>
       <h2 className='movies__title'>{movie.nameRU}</h2>
       <button
-          className={likeButtonClassName}
+          className={likeButtonClassName()}
           type='button'
           onClick={handleLike}
         />

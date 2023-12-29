@@ -1,12 +1,3 @@
-.form__input::placeholder {
-  font-size: 14px;
-  line-height: 20px;
-  padding: 0;
-  color: #8B8B8B;
-  background-color: transparent;
-}
-
-/* Auth */
 .form__label_type_register,
 .form__label_type_login {
   color:#8B8B8B;

@@ -33,7 +33,7 @@
 .form__list_type_register {
   display: flex;
   flex-direction: column;
-  margin-bottom: 267px;
+  margin-bottom: 159px;
 }
 .form__item {
   position: relative;
@@ -68,7 +68,10 @@
   font-size: 11px;
   line-height: 17px;
 }
-
+.form__input:focus {
+  outline-style: solid;
+  outline-offset: 0px;
+}
 .form__button-save:disabled {
   cursor: default;
   opacity: 0;

@@ -46,7 +46,7 @@ const Profile = ({ onSubmit, setIsLoggedIn }) => {
             ))}
           </ul>
         </Form>
-        <button className='profile__button-exit' onClick={onSignOut}>
+        <button type='button' className='profile__button-exit' onClick={onSignOut}>
           Выйти из аккаунта
         </button>
       </section>

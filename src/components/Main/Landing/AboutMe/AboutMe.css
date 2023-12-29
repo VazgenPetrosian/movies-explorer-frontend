@@ -27,6 +27,7 @@
 .aboutme__me {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .aboutme__info {
