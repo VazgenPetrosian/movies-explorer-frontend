@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const MoviesCard = ({
-  saved,
   card,
   onSaveMovie,
   onDeleteMovie,
@@ -12,6 +11,7 @@ const MoviesCard = ({
 }) => {
   const [saveCard, setSaveCard] = useState(false);
   const { pathname } = useLocation();
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     saveCardId.map((saveMovies) => {
@@ -30,7 +30,7 @@ const MoviesCard = ({
     }
     if (pathname === "/saved-movies") {
       className = `${
-        saved ? "movies__button_delete" : "movies__button_dislike"
+        isMobile ? "movies__button_delete" : "movies__button_delete-desctop"
       }`;
     }
     return className;
@@ -64,18 +64,40 @@ const MoviesCard = ({
       .catch((err) => console.log(err));
   }
 
+  function displayDeleteButton(w) {
+    if (w > 768) {
+      setIsMobile(false);
+    } else {
+      setIsMobile(true);
+    }
+  }
+
+  useEffect(() => {
+    displayDeleteButton();
+    const handleResize = () => {
+      displayDeleteButton(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <li className="movies__item">
-      <img
-        className="movies__photo"
-        src={
-          pathname === "/saved-movies"
-            ? card.image
-            : `https://api.nomoreparties.co${card.image.url}`
-        }
-        alt={card.nameRU}
-        onClick={handleLike}
-      />
+      <a href={card.trailerLink} target="_blank">
+        <img
+          className="movies__photo"
+          src={
+            pathname === "/saved-movies"
+              ? card.image
+              : `https://api.nomoreparties.co${card.image.url}`
+          }
+          alt={card.nameRU}
+        />
+      </a>
       <div className="movies__info">
         <h2 className="movies__title">{card.nameRU}</h2>
         <button

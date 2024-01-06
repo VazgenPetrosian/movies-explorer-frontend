@@ -1,6 +1,6 @@
 import "./Input.css";
 
-const Input = ({ value, handleChange, input, form, validate }) => {
+const Input = ({ value, handleChange, input, form, validate, isChecked }) => {
   const {
     required,
     name,
@@ -9,7 +9,6 @@ const Input = ({ value, handleChange, input, form, validate }) => {
     type,
     minLength,
     maxLength,
-    checked,
   } = input;
 
   const classInputForm = form ? `form__input_type_${form}` : "";
@@ -24,7 +23,7 @@ const Input = ({ value, handleChange, input, form, validate }) => {
           className={classInput}
           type={type}
           name={name}
-          defaultChecked={checked}
+          defaultChecked={isChecked}
           required={required}
           onChange={handleChange}
         />

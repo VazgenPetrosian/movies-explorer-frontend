@@ -2,22 +2,20 @@ import "./Auth.css";
 import Form from "../Main/Form/Form";
 import Input from "../Main/Input/Input";
 import Main from "../Main/Main";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { formForRegister, formForLogin } from "../../utils/formList";
+import { useState } from "react";
 
-const Auth = ({ value, setIsValue, setIsLoggedIn, onLogin, onRegister }) => {
-  const navigate = useNavigate();
+const Auth = ({ value, setIsValue, onLogin, onRegister }) => {
   const { pathname } = useLocation();
+  const [firstTime, setFirstTime] = useState(true);
 
   const handleOnRegister = () => {
     onRegister();
-    navigate("/signin", { replace: true });
   };
 
   const handleOnLogin = () => {
     onLogin();
-    setIsLoggedIn(true);
-    navigate("/movies", { replace: true });
   };
 
   let formsInfo;
@@ -53,6 +51,7 @@ const Auth = ({ value, setIsValue, setIsLoggedIn, onLogin, onRegister }) => {
   const { validate, name, title, inputs, buttonTextDefault } = formsInfo.form;
 
   function handleChange(evt) {
+    setFirstTime(false);
     setIsValue({ ...value, [evt.target.name]: evt.target.value });
   }
 
@@ -80,7 +79,7 @@ const Auth = ({ value, setIsValue, setIsLoggedIn, onLogin, onRegister }) => {
                   value={value[`${input.name}`]}
                   input={input}
                   handleChange={handleChange}
-                  validate={validate}
+                  validate={firstTime ? false : validate}
                   form={name}
                 />
               </li>

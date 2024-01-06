@@ -1,9 +1,11 @@
 import "./NotFound.css";
 import Main from "../Main/Main";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const NotFound = ({ setIsNotFoundPage }) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     setIsNotFoundPage(true);
   }, [setIsNotFoundPage]);
@@ -12,13 +14,16 @@ const NotFound = ({ setIsNotFoundPage }) => {
     <Main className="notfound">
       <h1 className="notfound__title">404</h1>
       <p className="notfound__subtitle">Страница не найдена</p>
-      <Link
+      <button
         className="notfound__link"
         to="/"
-        onClick={() => setIsNotFoundPage(false)}
+        onClick={() => {
+          setIsNotFoundPage(false);
+          navigate(-1);
+        }}
       >
         Назад
-      </Link>
+      </button>
     </Main>
   );
 };

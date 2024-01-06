@@ -78,12 +78,31 @@ const Header = ({ loggedIn }) => {
                     </NavLink>
                   </li>
                   <li className="header__item">
-                    <NavLink className="header__link" to="/movies">
+                    <NavLink
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "header__link"
+                          : isActive
+                          ? "header__link_active"
+                          : "header__link"
+                      }
+                      to="/movies"
+                    >
                       Фильмы
                     </NavLink>
                   </li>
                   <li className="header__item">
-                    <NavLink className="header__link" to="/saved-movies">
+                    <NavLink
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "header__link"
+                          : isActive
+                          ? "header__link_active"
+                          : "header__link"
+                      }
+                      activeClassname="header__link_active"
+                      to="/saved-movies"
+                    >
                       Сохранённые фильмы
                     </NavLink>
                   </li>

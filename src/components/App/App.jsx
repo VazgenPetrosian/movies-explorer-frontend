@@ -11,13 +11,14 @@ import Landing from "../Main/Landing/Landing";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import ProtectedRouteElement from "../ProtectedRouteElement/ProtectedRouteElement";
-
+import { CurrentUserContext } from "../../contexts/currentUserContext";
 import * as auth from "../../utils/auth";
 import mainApi from "../../utils/MainApi";
 import moviesApi from "../../utils/MoviesApi";
 
 import okImage from "../../images/ok.png";
 import notOkImage from "../../images/notok.png";
+
 const App = () => {
   const [loggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("jwtToken") || false
@@ -35,6 +36,7 @@ const App = () => {
   const [initialCards, setInitialCards] = useState([]);
   const [saveCard, setSaveCard] = useState([]);
   const [shortFilms, setShortFilms] = useState([]);
+  const [isFirstSearch, setIsFirstSearch] = useState(true);
 
   const navigate = useNavigate();
 
@@ -56,13 +58,40 @@ const App = () => {
       })
       .catch(() => {
         setPopupImage(notOkImage);
-        setPopupAnswer("Успешная Ошибка!");
+        setPopupAnswer("Ошибка!");
         handleInfoTooltip();
         setIsLoggedIn(false);
       })
       .finally(() => {
         setIsLoading(false);
       });
+  }
+
+  function getInitialMovies(isFirstSearch, doTheFirstSearch) {
+    if (isFirstSearch === true) {
+      setIsLoading(true);
+      moviesApi
+        .getInitialMovies()
+        .then((cards) => {
+          setInitialCards(cards);
+          const startFilterCards = cards.filter((film) => film.duration <= 40);
+          localStorage.setItem("shortFilms", JSON.stringify(startFilterCards));
+          localStorage.setItem("longFilms", JSON.stringify(cards));
+          localStorage.setItem(
+            "filteredShortFilms",
+            JSON.stringify(startFilterCards)
+          );
+          setShortFilms(startFilterCards);
+          setIsFirstSearch(false);
+          doTheFirstSearch([cards, startFilterCards]);
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
   }
 
   function handleInfoTooltip() {
@@ -137,7 +166,7 @@ const App = () => {
       })
       .catch(() => {
         setPopupImage(notOkImage);
-        setPopupAnswer("Успешная Ошибка!");
+        setPopupAnswer("Ошибка!");
         handleInfoTooltip();
       })
       .finally(() => {
@@ -158,12 +187,15 @@ const App = () => {
               email: res.email,
             });
           } else {
-            setIsLoggedIn(false);
+            onSignout();
           }
         })
         .catch((err) => {
           console.error(err);
+          onSignout();
         });
+    } else {
+      onSignout();
     }
   }, []);
 
@@ -187,32 +219,6 @@ const App = () => {
   }, [loggedIn, localStorage.getItem("jwtToken")]);
 
   useEffect(() => {
-    if (loggedIn === true) {
-      setIsLoading(true);
-      moviesApi
-        .getInitialMovies()
-        .then((cards) => {
-          setInitialCards(cards);
-          const startFilterCards = cards.filter((film) => film.duration <= 40);
-          localStorage.setItem("shortFilms", JSON.stringify(startFilterCards));
-          localStorage.setItem("longFilms", JSON.stringify(cards));
-          localStorage.setItem(
-            "filteredShortFilms",
-            JSON.stringify(startFilterCards)
-          );
-          setShortFilms(startFilterCards);
-        })
-        .catch((err) => {
-          console.error(err);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
-    return;
-  }, [loggedIn]);
-
-  useEffect(() => {
     if (loggedIn === true && localStorage.getItem("jwtToken")) {
       setIsLoading(true);
       mainApi
@@ -233,102 +239,106 @@ const App = () => {
 
   return (
     <>
-      {!isNotFoundPage && <Header loggedIn={loggedIn} />}
-      <Routes>
-        <Route path="/" element={<Landing />} loggedIn={loggedIn} />
-        <Route
-          path="/movies"
-          element={
-            <ProtectedRouteElement
-              element={Movies}
-              onSaveMovie={handleSaveMovie}
-              onDeleteMovie={handleDeleteMovie}
-              saveCard={saveCard}
-              isLoading={isLoading}
-              initialCards={initialCards}
-              errorText={errorText}
-              error={error}
-              setError={setError}
-              setErrorText={setErrorText}
-              shortFilms={shortFilms}
-              loggedIn={loggedIn}
-            />
-          }
-        />
-        <Route
-          path="/saved-movies"
-          element={
-            <ProtectedRouteElement
-              element={SavedMovies}
-              saveCard={saveCard}
-              onDeleteMovie={handleDeleteMovie}
-              errorText={errorText}
-              error={error}
-              setError={setError}
-              setErrorText={setErrorText}
-              loggedIn={loggedIn}
-            />
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            loggedIn ? (
-              <Navigate to="/" replace />
-            ) : (
-              <Auth
-                name="registration"
-                value={valueRegister}
-                setIsValue={setIsValueRegister}
-                onLogin={onLogin}
-                onRegister={onRegister}
+      <CurrentUserContext.Provider value={currentUser}>
+        {!isNotFoundPage && <Header loggedIn={loggedIn} />}
+        <Routes>
+          <Route path="/" element={<Landing />} loggedIn={loggedIn} />
+          <Route
+            path="/movies"
+            element={
+              <ProtectedRouteElement
+                element={Movies}
+                onSaveMovie={handleSaveMovie}
+                onDeleteMovie={handleDeleteMovie}
+                saveCard={saveCard}
+                isLoading={isLoading}
+                initialCards={initialCards}
+                errorText={errorText}
+                error={error}
+                setError={setError}
+                setErrorText={setErrorText}
+                shortFilms={shortFilms}
+                loggedIn={loggedIn}
+                getInitialMovies={getInitialMovies}
+                isFirstSearch={isFirstSearch}
               />
-            )
-          }
-        />
-        <Route
-          path="/signin"
-          element={
-            loggedIn ? (
-              <Navigate to="/movies" replace />
-            ) : (
-              <Auth
-                value={valueLogin}
-                setIsValue={setIsValueLogin}
+            }
+          />
+          <Route
+            path="/saved-movies"
+            element={
+              <ProtectedRouteElement
+                element={SavedMovies}
+                saveCard={saveCard}
+                onDeleteMovie={handleDeleteMovie}
+                errorText={errorText}
+                error={error}
+                setError={setError}
+                setErrorText={setErrorText}
+                loggedIn={loggedIn}
+              />
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              loggedIn ? (
+                <Navigate to="/" replace />
+              ) : (
+                <Auth
+                  name="registration"
+                  value={valueRegister}
+                  setIsValue={setIsValueRegister}
+                  onLogin={onLogin}
+                  onRegister={onRegister}
+                />
+              )
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              loggedIn ? (
+                <Navigate to="/movies" replace />
+              ) : (
+                <Auth
+                  value={valueLogin}
+                  setIsValue={setIsValueLogin}
+                  setIsLoggedIn={setIsLoggedIn}
+                  onLogin={onLogin}
+                  onRegister={onRegister}
+                />
+              )
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRouteElement
+                element={Profile}
+                loggedIn={loggedIn}
                 setIsLoggedIn={setIsLoggedIn}
-                onLogin={onLogin}
-                onRegister={onRegister}
+                onUpdateUser={handleUpdateUser}
+                onSignOut={onSignout}
+                currentUser={currentUser}
+                onSubmit={handleUpdateUser}
+                isLoading={isLoading}
               />
-            )
-          }
+            }
+          />
+          <Route
+            path="/*"
+            element={<NotFound setIsNotFoundPage={setIsNotFoundPage} />}
+          />
+        </Routes>
+        {!isNotFoundPage && <Footer />}
+        <Popup
+          title={popupAnswer}
+          image={popupImage}
+          isOpen={isPopupOpen}
+          onClose={closeAllPopups}
         />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRouteElement
-              element={Profile}
-              loggedIn={loggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-              onUpdateUser={handleUpdateUser}
-              onSignOut={onSignout}
-              currentUser={currentUser}
-              onSubmit={handleUpdateUser}
-              isLoading={isLoading}
-            />
-          }
-        />
-        <Route
-          path="/*"
-          element={<NotFound setIsNotFoundPage={setIsNotFoundPage} />}
-        />
-      </Routes>
-      {!isNotFoundPage && <Footer />}
-      <Popup
-        title={popupAnswer}
-        image={popupImage}
-        isOpen={isPopupOpen}
-        onClose={closeAllPopups}
-      />
+      </CurrentUserContext.Provider>
     </>
   );
 };

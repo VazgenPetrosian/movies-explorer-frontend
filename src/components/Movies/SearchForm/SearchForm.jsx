@@ -64,6 +64,7 @@ const SearchForm = ({
           input={input}
           handleChange={(evt) => handleChange(evt, input.name)}
           validate={validate}
+          isChecked={isShortFilms}
         />
       ))}
     </Form>

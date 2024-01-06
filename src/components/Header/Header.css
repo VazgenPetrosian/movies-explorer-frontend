@@ -84,8 +84,21 @@
 }
 
 .header__link.active {
+  
   text-decoration: underline 2px;
   text-underline-offset: 12px;
+}
+
+.header__link_active {
+  font-size: 13px;
+  display: block;
+  text-decoration: none;
+  color: #FFF;
+  transition: opacity 0.5s ease-out;
+  /* font-size: 10px; */
+  font-weight: 500;
+  line-height: 22px;
+  border-bottom: 1px solid #FFFFFF;
 }
 .header__button {
   display: flex;

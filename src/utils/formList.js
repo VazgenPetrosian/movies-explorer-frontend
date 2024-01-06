@@ -1,5 +1,5 @@
 const formForSearch = {
-  validate: false,
+  validate: true,
   name: 'search',
   title: 'Найти',
   buttonTextDefault: 'Найти',

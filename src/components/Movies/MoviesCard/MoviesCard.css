@@ -45,8 +45,25 @@
   transition: opacity 1s;
   margin-right: -1px;
 }
+.movies__button_delete-desctop {
+  padding: 0;
+  background-image: url(../../../images/delete.svg);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-color: #222222;
+  border: none;
+  cursor: pointer;
+  padding-right: 33px;
+  opacity: 0;
+  height: 18px;
+  width: 18px;
+  transition: opacity 1s;
+  margin-right: -1px;
+}
+.movies__button_delete-desctop:hover {
+  opacity: 1;
+}
 .movies__button_like {
-  /* margin-top: -7px; */
   width: 18px;
   height: 18px;
   padding: 0;

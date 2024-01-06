@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./Profile.css";
 import { formForProfile } from "../../utils/formList";
 import Form from "../Main/Form/Form";
 import Input from "../Main/Input/Input";
+import { CurrentUserContext } from "../../contexts/currentUserContext";
 
-const Profile = ({ onSignOut, currentUser, onSubmit, isLoading }) => {
+const Profile = ({ onSignOut, onSubmit, isLoading }) => {
+  const currentUser = useContext(CurrentUserContext);
   const { validate, name, buttonTextDefault, inputs } = formForProfile;
   const [value, setIsValue] = useState({
     name: currentUser.name || "",
@@ -39,6 +41,7 @@ const Profile = ({ onSignOut, currentUser, onSubmit, isLoading }) => {
         <h1 className="profile__title">Привет, {currentUser.name}!</h1>
         <Form
           validate={validate}
+          isDisabled={isDisabled}
           name={name}
           buttonText={buttonTextDefault}
           onSubmit={(e) => {

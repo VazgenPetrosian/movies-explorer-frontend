@@ -1,7 +1,7 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const MoviesCardList = ({
@@ -15,34 +15,43 @@ const MoviesCardList = ({
 }) => {
   let location = useLocation();
 
-  const screenWidth = useRef(window.innerWidth);
-
   const [isInitialDisplayOfMovies, setIsInitialDisplayOfMovies] = useState(12);
   const [addingNumberOfMovies, setAddingNumberOfMovies] = useState(0);
   const [isButtonMore, setIsButtonMore] = useState(false);
 
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
   useEffect(() => {
-    displayMoviesFromWidth();
-    window.addEventListener("resize", displayMoviesFromWidth);
+    displayMoviesFromWidth(window.innerWidth);
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+      displayMoviesFromWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   useEffect(() => {
     setIsButtonMore(moviesData?.length > isInitialDisplayOfMovies);
   }, [moviesData?.length, isInitialDisplayOfMovies]);
 
-  function displayMoviesFromWidth() {
-    if (screenWidth.current > 1099) {
+  function displayMoviesFromWidth(w) {
+    console.log(screenWidth);
+    if (w > 1137) {
       setIsInitialDisplayOfMovies(12);
       setAddingNumberOfMovies(3);
-      if (moviesData.length < 12) setIsButtonMore(0);
-    } else if (screenWidth.current <= 1099 && screenWidth.current > 689) {
+      if (moviesData?.length < 12) setIsButtonMore(0);
+    } else if (w <= 1137 && w > 634) {
       setIsInitialDisplayOfMovies(8);
       setAddingNumberOfMovies(2);
-      if (moviesData.length < 8) setIsButtonMore(0);
-    } else if (screenWidth.current <= 689 && screenWidth.current >= 320) {
+      if (moviesData?.length < 8) setIsButtonMore(0);
+    } else if (w <= 634 && w >= 320) {
       setIsInitialDisplayOfMovies(5);
       setAddingNumberOfMovies(2);
-      if (moviesData.length < 5) setIsButtonMore(0);
+      if (moviesData?.length < 5) setIsButtonMore(0);
     }
   }
 
