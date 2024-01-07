@@ -12,19 +12,24 @@ const MoviesCardList = ({
   onDeleteMovie,
   saveCard,
   setErrorText,
+  additiontalMovies,
+  setAdditionalMovies
+   
 }) => {
   let location = useLocation();
 
-  const [isInitialDisplayOfMovies, setIsInitialDisplayOfMovies] = useState(12);
-  const [addingNumberOfMovies, setAddingNumberOfMovies] = useState(0);
-  const [isButtonMore, setIsButtonMore] = useState(false);
+  const [isInitialDisplayOfMovies, setIsInitialDisplayOfMovies] = useState(
+    window.innerWidth > 1137 ? 12 : window.innerWidth > 634 ? 8 : 5
+  );
+  const [addingNumberOfMovies, setAddingNumberOfMovies] = useState(
+    window.innerWidth > 1137 ? 3 : window.innerWidth > 634 ? 2 : 2
+  );
 
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [isButtonMore, setIsButtonMore] = useState(false);
 
   useEffect(() => {
     displayMoviesFromWidth(window.innerWidth);
     const handleResize = () => {
-      setScreenWidth(window.innerWidth);
       displayMoviesFromWidth(window.innerWidth);
     };
 
@@ -39,35 +44,34 @@ const MoviesCardList = ({
   }, [moviesData?.length, isInitialDisplayOfMovies]);
 
   function displayMoviesFromWidth(w) {
-    console.log(screenWidth);
     if (w > 1137) {
       setIsInitialDisplayOfMovies(12);
       setAddingNumberOfMovies(3);
-      if (moviesData?.length < 12) setIsButtonMore(0);
+      if (moviesData?.length < 12) setIsButtonMore(false);
     } else if (w <= 1137 && w > 634) {
       setIsInitialDisplayOfMovies(8);
       setAddingNumberOfMovies(2);
-      if (moviesData?.length < 8) setIsButtonMore(0);
+      if (moviesData?.length < 8) setIsButtonMore(false);
     } else if (w <= 634 && w >= 320) {
       setIsInitialDisplayOfMovies(5);
       setAddingNumberOfMovies(2);
-      if (moviesData?.length < 5) setIsButtonMore(0);
+      if (moviesData?.length < 5) setIsButtonMore(false);
     }
   }
 
   function handleMoreBtnClick() {
-    const newAmountx = addingNumberOfMovies + isInitialDisplayOfMovies;
-    setIsInitialDisplayOfMovies(newAmountx);
+
+    setAdditionalMovies((moviesCount) => moviesCount + addingNumberOfMovies);
   }
 
   function onClickAddMore() {
-    displayMoviesFromWidth();
+    displayMoviesFromWidth(window.innerWidth);
     handleMoreBtnClick(addingNumberOfMovies);
   }
 
   function getMovies() {
     return moviesData
-      .slice(0, isInitialDisplayOfMovies)
+      .slice(0, additiontalMovies)
       .map((item) => (
         <MoviesCard
           key={item.id}
@@ -87,7 +91,7 @@ const MoviesCardList = ({
         key={item._id}
         card={item}
         onSaveMovie={onSaveMovie}
-        onDeleteMovie={onDeleteMovie}
+        onDeleteMovie={onDeleteMovie} 
         saveCardId={saveCard}
         setErrorText={setErrorText}
         saved={saved}

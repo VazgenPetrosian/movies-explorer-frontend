@@ -28,49 +28,55 @@ const Movies = ({
   const [isShortFilms, setIsShortFilms] = useState(
     localStorage.getItem("checkbox") === "true" ? true : false
   );
+  const [additiontalMovies, setAdditionalMovies] = useState(
+    window.innerWidth > 1137 ? 12 : window.innerWidth > 634 ? 8 : 5
+  );
 
   function handleShortFilms() {
     setIsShortFilms(!isShortFilms);
   }
 
+  function resetAditionalMovies() {
+    setAdditionalMovies(window.innerWidth > 1137 ? 12 : window.innerWidth > 634 ? 8 : 5);
+  }
 
-
-  function  handleSearchFilms(v) {
+  function handleSearchFilms(v) {
+    resetAditionalMovies();
     if (isFirstSearch === true) {
-      function doTheFirstSearch (starterPackFilms) {
-      const localFilterFilms = starterPackFilms[0].filter((card) => {
-        return (
-          card.nameRU.toLowerCase().includes(v.toLowerCase()) ||
-          card.nameEN.toLowerCase().includes(v.toLowerCase())
+      function doTheFirstSearch(starterPackFilms) {
+        const localFilterFilms = starterPackFilms[0].filter((card) => {
+          return (
+            card.nameRU.toLowerCase().includes(v.toLowerCase()) ||
+            card.nameEN.toLowerCase().includes(v.toLowerCase())
+          );
+        });
+        const localFilterShortFilms = starterPackFilms[1].filter((card) => {
+          return (
+            card.nameRU.toLowerCase().includes(v.toLowerCase()) ||
+            card.nameEN.toLowerCase().includes(v.toLowerCase())
+          );
+        });
+        setFilterFilms(localFilterFilms);
+        setFilterShortFilms(localFilterShortFilms);
+        localStorage.setItem("filteredFilms", JSON.stringify(localFilterFilms));
+        localStorage.setItem(
+          "filteredShortFilms",
+          JSON.stringify(localFilterShortFilms)
         );
-      });
-      const localFilterShortFilms = starterPackFilms[1].filter((card) => {
-        return (
-          card.nameRU.toLowerCase().includes(v.toLowerCase()) ||
-          card.nameEN.toLowerCase().includes(v.toLowerCase())
-        );
-      });
-      setFilterFilms(localFilterFilms);
-      setFilterShortFilms(localFilterShortFilms);
-      localStorage.setItem("filteredFilms", JSON.stringify(localFilterFilms));
-      localStorage.setItem(
-        "filteredShortFilms",
-        JSON.stringify(localFilterShortFilms)
-      );
-  
-      if (localFilterFilms.length === 0) {
-        setError(true);
-        setErrorText("Ничего не найдено");
-      } else if (v.toLowerCase().length === 0) {
-        setError(true);
-        setErrorText("Нужно ввести ключевое слово");
-      } else {
-        setError(false);
-      }}
+
+        if (localFilterFilms.length === 0) {
+          setError(true);
+          setErrorText("Ничего не найдено");
+        } else if (v.toLowerCase().length === 0) {
+          setError(true);
+          setErrorText("Нужно ввести ключевое слово");
+        } else {
+          setError(false);
+        }
+      }
 
       getInitialMovies(isFirstSearch, doTheFirstSearch);
-    }
-     else {
+    } else {
       const localFilterFilms = initialCards.filter((card) => {
         return (
           card.nameRU.toLowerCase().includes(v.toLowerCase()) ||
@@ -90,7 +96,7 @@ const Movies = ({
         "filteredShortFilms",
         JSON.stringify(localFilterShortFilms)
       );
-  
+
       if (localFilterFilms.length === 0) {
         setError(true);
         setErrorText("Ничего не найдено");
@@ -131,15 +137,20 @@ const Movies = ({
       />
       {error ? <span className="search__error">{errorText}</span> : ""}
       {isLoading && <Preloader />}
-      {!isLoading && <MoviesCardList
-        saved={false}
-        moviesData={isShortFilms ? filterShortFilms : filterFilms}
-        onSaveMovie={onSaveMovie}
-        onDeleteMovie={onDeleteMovie}
-        saveCard={saveCard}
-        isLoading={isLoading}
-        setErrorText={setErrorText}
-      />}
+      {!isLoading && (
+        <MoviesCardList
+          additiontalMovies={additiontalMovies}
+          setAdditionalMovies={setAdditionalMovies}
+          saved={false}
+          moviesData={isShortFilms ? filterShortFilms : filterFilms}
+          onSaveMovie={onSaveMovie}
+          onDeleteMovie={onDeleteMovie}
+          saveCard={saveCard}
+          isLoading={isLoading}
+          setErrorText={setErrorText}
+          
+        />
+      )}
     </Main>
   );
 };

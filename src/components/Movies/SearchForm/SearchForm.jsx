@@ -1,5 +1,5 @@
 import "./SearchForm.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { formForSearch } from "../../../utils/formList";
 import Form from "../../Main/Form/Form";
@@ -19,6 +19,7 @@ const SearchForm = ({
       ? localStorage.getItem("searchQuery") || ""
       : ""
   );
+  const spanRef = useRef();
 
   function handleChange(evt, inputName) {
     setValueSearch({ ...valueSearch, [evt.target.name]: evt.target.value });
@@ -53,6 +54,7 @@ const SearchForm = ({
     location.pathname === "/movies"
       ? localStorage.setItem("searchQuery", search)
       : localStorage.setItem("saveSearchQuery", search);
+      spanRef.current.textContent = "Короткометражки";
   };
 
   return (
@@ -65,6 +67,7 @@ const SearchForm = ({
           handleChange={(evt) => handleChange(evt, input.name)}
           validate={validate}
           isChecked={isShortFilms}
+          spanRef={spanRef}
         />
       ))}
     </Form>

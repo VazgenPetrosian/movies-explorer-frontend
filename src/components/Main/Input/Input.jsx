@@ -1,6 +1,6 @@
 import "./Input.css";
 
-const Input = ({ value, handleChange, input, form, validate, isChecked }) => {
+const Input = ({ value, handleChange, input, form, validate, isChecked, spanRef }) => {
   const {
     required,
     name,
@@ -63,7 +63,7 @@ const Input = ({ value, handleChange, input, form, validate, isChecked }) => {
     <label className={`form__label form__label_type_${name} ${classLabelForm}`}>
       {label && `${label}`}
       {inputType}
-      {type === "checkbox" && <span>{label ? label : placeholder}</span>}
+      {type === "checkbox" && <span ref={spanRef}>{label ? label : placeholder}</span>}
       {validate && <span className={`form__error ${name}-error`} />}
     </label>
   );

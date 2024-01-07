@@ -100,7 +100,6 @@ const Header = ({ loggedIn }) => {
                           ? "header__link_active"
                           : "header__link"
                       }
-                      activeClassname="header__link_active"
                       to="/saved-movies"
                     >
                       Сохранённые фильмы
