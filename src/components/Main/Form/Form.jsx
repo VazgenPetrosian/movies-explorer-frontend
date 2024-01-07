@@ -2,7 +2,7 @@ import "./Form.css";
 import React, { useRef, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-function Form({ children, validate, name, onSubmit, buttonText, isDisabled }) {
+function Form({ children, validate, name, onSubmit, buttonText, isDisabled, checkCheckbox }) {
   const [isValidForm, setIsValidForm] = useState(false);
   const formRef = useRef(0);
   const { pathname } = useLocation();
@@ -60,6 +60,7 @@ function Form({ children, validate, name, onSubmit, buttonText, isDisabled }) {
     if (valid) {
       onSubmit(evt);
     }
+    checkCheckbox();
   }
 
   return (

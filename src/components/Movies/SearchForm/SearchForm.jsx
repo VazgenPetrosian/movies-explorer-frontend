@@ -58,7 +58,7 @@ const SearchForm = ({
   };
 
   return (
-    <Form validate={validate} name={name} onSubmit={handleSearch}>
+    <Form validate={validate} name={name} onSubmit={handleSearch} checkCheckbox={()=> spanRef.current.textContent = "Короткометражки"}>
       {formForSearch.inputs.map((input) => (
         <Input
           key={input.name}
